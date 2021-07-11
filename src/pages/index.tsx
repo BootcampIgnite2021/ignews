@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Styles from '../styles/home.module.scss'
 
 export default function Home() {
   return (
@@ -7,7 +6,7 @@ export default function Home() {
       <Head>
         <title>ig.news | Início</title>
       </Head>
-      <h1 className={Styles.title}>
+      <h1>
         Hello world
       </h1>
     </>
