@@ -5,7 +5,12 @@ export function Header() {
   return (
     <header className={Styles.headerContainer}>
       <div className={Styles.headerContent}>
-        <img src="/images/logo.svg" alt="Logo" />
+        <div className={Styles.headerContainerLogoDesktop}>
+          <img src="/images/logo.svg" alt="Logo" />
+        </div>
+        <div className={Styles.headerContainerLogoMobile}>
+          <img src="/images/logoMobile.svg" alt="Logo" />
+        </div>
         <nav>
           <a className={Styles.active}>Home</a>
           <a>Posts</a>

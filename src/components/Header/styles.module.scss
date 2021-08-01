@@ -47,10 +47,33 @@
         bottom: 1px;
         left: 0;
       }
+
+      
+      @media (max-width: 365px) {
+        & + a {
+          margin-left: 1rem;
+        }
+      }
     }
   }
 
   button {
     margin-left: auto;
+  }
+}
+
+.headerContainerLogoDesktop {
+  display: none;
+
+  @media (min-width: 769px) {
+    display: inline;
+  }
+}
+
+.headerContainerLogoMobile {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: inline;
   }
 }

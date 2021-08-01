@@ -22,4 +22,8 @@
   svg.closeIcon {
     margin-left: 1rem;
   }
+
+  @media (max-width: 768px) {
+    width: 25%;
+  }
 }

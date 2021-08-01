@@ -14,5 +14,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp
-
-// Teste

@@ -7,7 +7,11 @@
   align-items: center;
   justify-content: space-between;
 
-
+  @media (max-width: 768px) {
+    img {
+      display: none;
+    }
+  }
 }
 
 .hero {
@@ -27,6 +31,11 @@
     span {
       color: var(--cyan-500);
     }
+
+    @media (max-width: 768px) {
+      font-size: 3.5rem;
+      line-height: 3.5rem;
+    }
   }
   
   p {
@@ -42,5 +51,12 @@
 
   button {
     margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 }
