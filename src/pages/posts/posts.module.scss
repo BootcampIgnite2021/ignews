@@ -1,0 +1,54 @@
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.posts {
+  max-width: 720px;
+  margin: 5rem auto 0;
+
+  a {
+    display: block;
+    
+    & + a {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-750);
+    }
+
+    time {
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: var(--gray-300);
+    }
+    
+    strong {
+      margin-top: 1rem;
+      display: block;
+      font-size: 1.5rem;
+      color: var(--white);
+      line-height: 2rem;
+      transition: color 0.2s;
+    }
+
+    p {
+      margin-top: 0.5rem;
+      color: var(--gray-300);
+      line-height: 1.625rem;
+    }
+
+
+    &:hover strong {
+      color: var(--yellow-500)
+    }
+  }
+
+  @media (max-width: 768px) {
+    a strong {
+      word-break: break-all;
+    }
+  }
+}
