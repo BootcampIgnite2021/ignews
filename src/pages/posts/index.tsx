@@ -1,10 +1,13 @@
-import Styles from './posts.module.scss';
+import Link from 'next/link';
+import Styles from './styles.module.scss';
 
 import { GetStaticProps } from 'next'
 import Prismic from '@prismicio/client'
 import { RichText } from 'prismic-dom'
 import Head from 'next/head'
 import { getPrismicClient } from '../../services/prismic';
+
+import { formatDate } from '../../utils/formatDate'
 
 interface ItemsPosts {
   slug: string
@@ -23,13 +26,15 @@ export default function Posts({ posts }: Posts) {
       <Head>ig.news | Posts</Head>
 
       <main className={Styles.container}>
-        <div className={Styles.posts}>
+        <div className={Styles.post}>
           {posts.map(post => (
-            <a href="" key={post.slug}>
-              <time>{post.updatedAt}</time>
-              <strong>{post.title}</strong>
-              <p>{post.excerpt}</p>
-            </a>
+            <Link href={`/posts/${post.slug}`} key={post.slug}>
+              <a>
+                <time>{post.updatedAt}</time>
+                <strong>{post.title}</strong>
+                <p>{post.excerpt}</p>
+              </a>
+            </Link>
           ))}
         </div>
       </main>
@@ -54,11 +59,7 @@ export const getStaticProps: GetStaticProps = async () => {
       slug: post.uid,
       title: RichText.asText(post.data.title),
       excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
-      updatedAt: Intl.DateTimeFormat('pt-br', { 
-        day: '2-digit', 
-        month: 'long', 
-        year: 'numeric'
-       }).format(new Date(post.last_publication_date))
+      updatedAt: formatDate(post.last_publication_date)
     }
   })
 
