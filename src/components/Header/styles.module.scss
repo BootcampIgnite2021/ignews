@@ -65,6 +65,10 @@
 .headerContainerLogoDesktop {
   display: none;
 
+  img {
+    cursor: pointer;
+  }
+
   @media (min-width: 769px) {
     display: inline;
   }
@@ -72,6 +76,10 @@
 
 .headerContainerLogoMobile {
   display: none;
+
+  img {
+    cursor: pointer;
+  }
 
   @media (max-width: 768px) {
     display: inline;
