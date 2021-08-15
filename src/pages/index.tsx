@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { GetStaticProps } from 'next'
+import { getSession } from 'next-auth/client'
 import Head from 'next/head'
 import { SubscribeButton } from '../components/SubscribeButton'
 import { stripe } from '../services/stripe'

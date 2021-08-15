@@ -25,8 +25,8 @@ export default function Posts({ posts }: Posts) {
     <>
       <Head>ig.news | Posts</Head>
 
-      <main className={Styles.container}>
-        <div className={Styles.post}>
+      <main className={Styles.containerPost}>
+        <div className={Styles.contentPosts}>
           {posts.map(post => (
             <Link href={`/posts/${post.slug}`} key={post.slug}>
               <a>
