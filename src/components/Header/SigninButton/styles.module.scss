@@ -24,6 +24,10 @@
   }
 
   @media (max-width: 768px) {
+    svg {
+      display: none;
+    }
     width: 25%;
+    font-size: 10px;
   }
 }
