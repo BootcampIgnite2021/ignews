@@ -5,6 +5,26 @@ import Providers from "next-auth/providers";
 
 import { faunadb } from "../../../services/faunadb";
 
+async function checkIndex() {
+  try {
+    await faunadb.query(
+      q.If(
+        q.Exists(q.Index("user_by_email")),
+        true,
+        q.CreateIndex({
+          name: "user_by_email",
+          source: q.Collection("users"),
+          terms: [{ field: ["data", "email"] }],
+          unique: true,
+        })
+      )
+    );
+    console.log("Índice criado ou já existente.");
+  } catch (error) {
+    console.error("Erro ao criar o índice:", error);
+  }
+}
+
 export default NextAuth({
   providers: [
     Providers.GitHub({
@@ -44,25 +64,24 @@ export default NextAuth({
     async signIn(user, account, profile) {
       const { email } = user;
 
+      await checkIndex();
+
       try {
         await faunadb.query(
           q.If(
             q.Not(
-              q.Exists(
-                q.Match(q.Index("user_by_email"), q.Casefold(user.email))
-              )
+              q.Exists(q.Match(q.Index("user_by_email"), q.Casefold(email)))
             ),
-            q.Create(q.Collection("users"), { data: { email } }),
-            q.Get(
-              q.Exists(
-                q.Match(q.Index("user_by_email"), q.Casefold(user.email))
-              )
-            )
+            q.Create(q.Collection("users"), {
+              data: { email },
+            }),
+            q.Get(q.Match(q.Index("user_by_email"), q.Casefold(email)))
           )
         );
 
         return true;
       } catch (error) {
+        console.log(error);
         return false;
       }
     },
